@@ -41,7 +41,7 @@ jobs:
       - name: Modify Docker Tag in Helm values
         shell: bash
         run: |
-          echo ${{needs.ci.outputs.commit_id}}
+          echo ${{'${{needs.ci.outputs.commit_id}}'}}
           pip install yq
           yq -Yi '.image.tag = "${{'${{needs.ci.outputs.commit_id}}' }}"' charts/${{values.app_name}}/values-${{values.app_env}}.yaml
 
